@@ -1,4 +1,4 @@
-package com.monkey.snail.modules.test;
+package com.monkey.snail.modules.test.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

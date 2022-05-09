@@ -1,20 +1,68 @@
+spring:
+  autoconfigure:
+    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+  datasource:
+    druid:
+      stat-view-servlet:
+        enabled: true
+        loginUsername: admin
+        loginPassword: 123456
+        allow:
+      web-stat-filter:
+        enabled: true
+    dynamic:
+      druid:
+        # 连接池的配置信息
+        # 初始化大小，最小，最大
+        initial-size: 5
+        min-idle: 5
+        maxActive: 1000
+        # 配置获取连接等待超时的时间
+        maxWait: 60000
+        # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+        timeBetweenEvictionRunsMillis: 60000
+        # 配置一个连接在池中最小生存的时间，单位是毫秒
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 1 FROM DUAL
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        # 打开PSCache，并且指定每个连接上PSCache的大小
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+        #filters: stat,wall,slf4j
+      datasource:
+        master:
+          url: jdbc:mysql://106.13.30.68:3306/snail
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          #多数据源配置
+        DS2:
+          url: jdbc:mysql://106.13.30.68:3306/snail2
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver
+      primary: master
+mybatis-plus:
+  configuration:
+    #控制台打印sql。
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 knife4j:
-  #???????? ??false
+  #是否开启增强模式 默认false
   enable: true
   documents:
     -
-      #????
-      group: 2.X??
-      #????????
-      name: ????
-      #markdown????,????????(classpath:markdowns/*)?????????(classpath:md/sign.md)
+      group: snail-v1.0
+      name: snail
       locations: classpath:sign/*
-  #??UI??
+  #增强UI
   setting:
     language: zh-CN
     enableSwaggerModels: true
     enableDocumentManage: true
-    swaggerModelName: ?????
+    swaggerModelName: snail
     enableVersion: false
     enableReloadCacheParameter: false
     enableAfterScript: true
@@ -28,7 +76,7 @@ knife4j:
     enableSearch: false
     enableFooter: false
     enableFooterCustom: true
-    footerCustomContent: Apache License ??? | Copyright  2019-[????????????](https://gitee.com/xiaoym/knife4j)
+    footerCustomContent: Apache License snail | Copyright  2019-[snail)
     enableDynamicParameter: false
     enableDebug: true
     enableOpenApi: false

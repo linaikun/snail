@@ -56,7 +56,7 @@ public class Knife4jConfig {
                 author,
                 "",
                 "",
-                new ArrayList()
+                new ArrayList<>()
         );
     }
 }

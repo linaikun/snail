@@ -1,10 +1,10 @@
-package com.monkey.snail.modules.test;
+package com.monkey.snail.modules.test.controller;
 
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
+import com.monkey.snail.modules.test.entity.TestDemo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.Tag;
 import org.springframework.web.bind.annotation.*;
 
 @Api(tags = "测试类")
@@ -20,7 +20,7 @@ public class TestController {
     }
  
     @ApiOperation("测试post+实体类入参")
-    @ApiOperationSupport(author = "ceshi",order =01 )
+    @ApiOperationSupport(author = "ceshi",order =1 )
     @PostMapping("testPost")
     public String testPost(@RequestBody TestDemo testDemo) {
         return testDemo.getName() + ":" + testDemo.getSex();
